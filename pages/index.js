@@ -31,9 +31,11 @@ export default function Home({exploreData, cardsData}) {
           <h2 className='py-10 text-4xl font-semibold'>Live Anywhere</h2>
           <div className='flex p-3 -ml-3 space-x-3 overflow-scroll md:scrollbar-default scrollbar-hide'>
           {/* -ml-3 有点偏右 用负的ml调整回来 */}
-            {cardsData.map(({img, title}) => (
+            {cardsData.map(({img, title}) => (//注意这个位置是()
               <MediumCard key={img} img={img} title={title} />
               ))}
+
+          {/* {Data.map(({i, t}) => (<M key={i} i={i} t={t}/>))} */}
           </div>
         </section>
 
