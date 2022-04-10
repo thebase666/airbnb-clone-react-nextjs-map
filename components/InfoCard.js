@@ -18,11 +18,13 @@ function InfoCard({ img, location, title, description, star, price, total }) {
                 <div className="w-10 pt-2 border-b" />
                 <p className="flex-grow pt-2 text-sm text-gray-500">{description}</p>
                 {/* 这个p标签flex-grow占横向也占竖向把下面的div顶到父div底部*/}
-                <div className="flex items-end justify-between pt-5">
-                    <p className="flex items-center">
+                <div className="flex items-end justify-between ">
+                    {/* flex同高 flex flex-col同宽 加上items-center或end 不仅位置变化 而且压缩 */}
+                    <p className="flex items-center border border-black ">
                         <StarIcon className="h-5 text-red-400" />{star}</p>
                     {/* p标签flex 里面内容StarIcon和{star}在一行 */}
                     <div className="text-right">
+                        {/* 没有flex justify-end不好使 只能text-right  */}
                         {/* text-right 可以在父元素div定义 也可以在子元素p标签定义 */}
                         <p className="pb-2 text-lg font-semibold lg:text-2xl">{price}</p>
                         <p className="font-extralight">{total}</p>

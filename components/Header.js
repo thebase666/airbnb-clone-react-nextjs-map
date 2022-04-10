@@ -46,26 +46,35 @@ function Header({ placeholder }) {
 
     return (
         <header className="sticky top-0 z-50 grid grid-cols-3 p-5 bg-white shadow-md md:px-10 ">
+            {/* airbnb用的grid grid-cols-3 
+            insta用的flex justify-between 
+            amaz用的flex中间flex-grow 互顶*/}
             {/* relative包裹图片  父元素grid grid-cols-3就不需要flex 子元素不用grid自动占一格且横排  */}
-            <div className="relative flex items-center h-10 my-auto cursor-pointer">
+            <div className="relative items-center w-40 h-10 my-auto cursor-pointer">
                 <Image
                     onClick={() => router.push('/')}
                     src="https://links.papareact.com/qd3"
                     layout="fill"
                     objectFit="contain"
-                    objectPosition="left"
+                //外div给长宽w-40 h-10和relative 图片给layout="fill" objectFit="contain" 
+                //图片给长宽width={1920} height={1080} objectFit="contain" 外div不用relative不用长宽 保持长宽比
                 />
+
             </div>
 
             <div className="flex items-center py-2 rounded-full md:border-2 md:shadow-sm">
                 <input
                     value={searchInput}
                     onChange={(e) => setSearchInput(e.target.value)}
-                    className="flex-grow pl-5 text-sm text-gray-600 placeholder-gray-400 bg-transparent outline-none"
-                    type="text" placeholder={placeholder || "Start your search"} />
+                    className="flex-grow pl-5 text-sm text-gray-600 placeholder-gray-400 bg-transparent outline-none "
+                    type="text"
+                    placeholder={placeholder || "Start your search"} />
                 <SearchIcon className="hidden h-8 p-2 text-white bg-red-400 rounded-full cursor-pointer md:inline md:mx-2" />
             </div>
+            {/* 外div包裹input和icon 给border-2 rounded-full做外框
+            input给flex-grow outline-none还不完全透明给bg-transparent 用p调位置text调字text-sm text-gray-600*/}
 
+            {/* felx justify-end才好使 这个位置text-right不好使 后面没有flex justify-end不好使 只能text-right */}
             <div className="flex items-center justify-end space-x-4 text-gray-500">
                 <p className="hidden md:inline">Become a host</p>
                 <GlobeAltIcon className="h-6" />
@@ -76,12 +85,14 @@ function Header({ placeholder }) {
             </div>
 
             {searchInput && (
-                <div className="col-span-3 mx-auto">
+                <div className="flex flex-col col-span-3 mx-auto">
+                    {/* mx-auto 不仅居中 而且自动对齐 控制flex-grow */}
                     <DateRangePicker
                         ranges={[selectionRange]}
                         minDate={new Date()}
                         rangeColors={["#FD5B61"]}
                         onChange={handleSelect}
+                    //这个位置直接写函数名 调用函数 参数已经定义好了 
                     />
                     <div className="flex items-center mb-4 border-b ">
                         <h2 className="flex-grow text-2xl font-semibold ">Number of Guests</h2>
@@ -96,6 +107,7 @@ function Header({ placeholder }) {
                     <div className="flex">
                         <button onClick={(e) => setSearchInput("")} className="flex-grow text-gray-500">Cancel</button>
                         <button onClick={search} className="flex-grow text-red-400">Search</button>
+                        {/* 不需要参数或参数已经定义好了 直接函数名调用函数  传参用箭头函数 router.push用箭头函数 */}
                     </div>
                 </div>
             )}

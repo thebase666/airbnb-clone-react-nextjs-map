@@ -18,10 +18,11 @@ function Search({ searchResults }) {
         <div>
             <Header placeholder={`${location} - ${range} - ${noOfGuests}guests`} />
             <main className="flex">
+                {/* flex 地图在右侧 */}
                 <section className="flex-grow px-6 pt-14">
                     <p className="text-sm">300+ Stays - {range} -  for {noOfGuests} guests</p>
                     <h1 className="mt-2 mb-6 text-3xl font-semibold">Stays in {location}</h1>
-                    <div className="hidden mb-5 space-x-2 text-gray-700 lg:inline-flex ">
+                    <div className="hidden mb-5 space-x-2 text-gray-700 lg:inline-flex whitespace-nowrap">
                         <p className="button">Cancellation Flexibility</p>
                         <p className="button">Flexibility</p>
                         <p className="button">Flexibility</p>
@@ -59,6 +60,7 @@ function Search({ searchResults }) {
 export default Search;
 
 export async function getServerSideProps() {
+    // 动态路由传参 要用context  If the page name is [id].js , then params will look like { id: ... }.
     const searchResults = await fetch("https://links.papareact.com/isz").
         then((req) => req.json());
     return {

@@ -4,14 +4,15 @@ import ReactMapGL, { Marker, Popup } from "react-map-gl";
 import { LocationMarkerIcon } from "@heroicons/react/solid";
 import Image from "next/image"
 
-
+//怎么处理的初始坐标 
 function Map({ searchResults }) {
 
   const [selectedLocation, setSelectedLocation] = useState({})
+
   const coordinates = searchResults.map((result) => ({
     longitude: result.long,
     latitude: result.lat
-  }));
+  }));//处理数据 返回列表 object经纬度  forEach没有返回值 map有返回值 用map更容易处理
 
   const center = getCenter(coordinates);
 
@@ -21,7 +22,7 @@ function Map({ searchResults }) {
     latitude: center.latitude,
     longitude: center.longitude,
     zoom: 11,
-  });
+  });//初始化就用url处理后的结果
 
 
   return (
@@ -42,7 +43,7 @@ function Map({ searchResults }) {
           >
             <p role="img"
               onClick={() => setSelectedLocation(result)}
-              className="text-lg cursor-pointer animate-bounce">
+              className="cursor-pointer animate-bounce">
               <LocationMarkerIcon className="text-blue-400 h-7 " /></p>
           </Marker>
           {selectedLocation.long === result.long ? (
@@ -61,7 +62,7 @@ function Map({ searchResults }) {
                 </div>
               </div>
             </Popup>
-          ) : (
+          ) : (//可直接返回false
             false
           )}
 

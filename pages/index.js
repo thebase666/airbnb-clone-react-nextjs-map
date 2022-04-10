@@ -5,10 +5,14 @@ import MediumCard from '../components/MediumCard';
 import SmallCard from '../components/SmallCard';
 import LargeCard from '../components/LargeCard';
 import Footer from '../components/Footer';
+import { useState } from "react";
 
 export default function Home({ exploreData, cardsData }) {
+  const [bgColor, setBgColor] = useState('yellow');
+  const [star, setStar] = useState(false);
+
   return (
-    <div className="">
+    <div>
       <Head><title>Airbnb</title></Head>
       <Header />
       <Banner />
@@ -24,15 +28,55 @@ export default function Home({ exploreData, cardsData }) {
         </section>
 
         <section>
-          <h2 className='py-10 text-4xl font-semibold'>Live Anywhere</h2>
-          <div className='flex p-3 -ml-3 space-x-3 overflow-scroll md:scrollbar-default scrollbar-hide'>
+          <h2 className='py-10 text-4xl font-semibold'>Live Anywhere Scroll 1</h2>
+          <div className='flex p-5 space-x-3 overflow-x-scroll md:scrollbar-default snap-mandatory snap-x'>
             {/* -ml-3 有点偏右 用负的ml调整回来 */}
             {cardsData.map(({ img, title }) => (
               <MediumCard key={img} img={img} title={title} />
             ))}
-
+            {cardsData.map(({ img, title }) => (
+              <MediumCard key={img} img={img} title={title} />
+            ))}
+            {cardsData.map(({ img, title }) => (
+              <MediumCard key={img} img={img} title={title} />
+            ))}
           </div>
         </section>
+
+        <section>
+          <h2 className='py-10 text-4xl font-semibold'>Live Anywhere Scroll 2</h2>
+          <div className='flex p-5 space-x-3 overflow-x-scroll scrollbar-thin scrollbar-thumb-gray-900 md:scrollbar-default snap-mandatory snap-x'>
+            {/* -ml-3 有点偏右 用负的ml调整回来 */}
+            {cardsData.map(({ img, title }) => (
+              <MediumCard key={img} img={img} title={title} />
+            ))}
+            {cardsData.map(({ img, title }) => (
+              <MediumCard key={img} img={img} title={title} />
+            ))}
+            {cardsData.map(({ img, title }) => (
+              <MediumCard key={img} img={img} title={title} />
+            ))}
+          </div>
+        </section>
+
+
+        <section className={`bg-${bgColor}-400 mt-10`}>
+          <div className="relative h-96 min-w-[300px]">
+            {star && (<div className="absolute top-10 left-10">
+              star
+            </div>)}
+          </div>
+        </section>
+
+        <div className="">
+          <button onClick={() => setBgColor('red')} className="px-4 py-2 mt-5 text-sm text-white bg-gray-900 rounded-lg">red</button>
+          <button onClick={() => setBgColor('blue')} className="px-4 py-2 mt-5 text-sm text-white bg-gray-900 rounded-lg">blue</button>
+          <button onClick={() => setBgColor('yellow')} className="px-4 py-2 mt-5 text-sm text-white bg-gray-900 rounded-lg">yellow</button>
+          <button onClick={() => setStar(!star)} className="px-4 py-2 mt-5 text-sm text-white bg-gray-900 rounded-lg">star</button>
+
+        </div>
+
+
 
         <LargeCard
           img="https://links.papareact.com/4cj"
@@ -40,6 +84,10 @@ export default function Home({ exploreData, cardsData }) {
           discription="Discrition by Airbnb"
           buttonText="Get Inspired"
         />
+
+
+
+
       </main>
 
       <Footer />
