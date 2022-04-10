@@ -65,7 +65,7 @@ export default function Home({ exploreData, cardsData }) {
 
           <div className="relative h-96 min-w-[300px] bg-transparent">
             {star && (<div className="absolute top-10 left-10">
-              <p className="flex items-center border border-black ">
+              <p className="flex items-center ">
                         <StarIcon className="h-5 text-black" /></p>
             </div>)}
           </div>
