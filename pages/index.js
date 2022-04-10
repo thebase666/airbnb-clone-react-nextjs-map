@@ -60,8 +60,9 @@ export default function Home({ exploreData, cardsData }) {
         </section>
 
 
-        <section className={`bg-${bgColor}-400 mt-10`}>
-          <div className="relative h-96 min-w-[300px]">
+        <section className={(bgColor == 'red') ? ('bg-red-500') : (bgColor == 'blue') ? ('bg-blue-500') : ('bg-yellow-500')}>
+
+          <div className="relative h-96 min-w-[300px] bg-transparent">
             {star && (<div className="absolute top-10 left-10">
               star
             </div>)}
