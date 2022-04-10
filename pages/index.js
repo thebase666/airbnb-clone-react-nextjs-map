@@ -43,7 +43,7 @@ export default function Home({ exploreData, cardsData }) {
           </div>
         </section>
 
-        <section>
+        <section className="mb-10">
           <h2 className='py-10 text-4xl font-semibold'>Live Anywhere Scroll 2</h2>
           <div className='flex p-5 space-x-3 overflow-x-scroll scrollbar-thin scrollbar-thumb-gray-900 md:scrollbar-default snap-mandatory snap-x'>
             {/* -ml-3 有点偏右 用负的ml调整回来 */}
